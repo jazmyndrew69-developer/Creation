@@ -1,127 +1,130 @@
-/* ===== THEME ===== */
-*{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --bg:#0A0A0A; --ink:#ffffff;
-  --pink:#FFC5D9; --lav:#C9A7EB;
-  --glow:linear-gradient(135deg,var(--pink),var(--lav));
-}
-body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif;background:var(--bg);color:var(--ink);}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* ===== PARALLAX BG (hero only) ===== */
-.parallax.parallax-bg{
-  position:fixed; inset:0; z-index:-3;
-  background:url("assets/cherryblossom1.jpg") center/cover no-repeat;
-  filter:brightness(.65) saturate(1.1);
-  transform:translateZ(0);
-  will-change:transform;
+:root {
+  --bg: #0A0A0A;
+  --ink: #ffffff;
+  --pink: #FFC5D9;
+  --lavender: #C9A7EB;
+  --glow: linear-gradient(135deg, var(--pink), var(--lavender));
 }
 
-/* petals layer */
-#petals{position:fixed;inset:0;pointer-events:none;z-index:-1}
-.petal{
-  position:absolute; top:-10vh; width:22px; height:22px; border-radius:999px;
-  background:rgba(255,197,217,.88); filter:blur(1px); opacity:.9;
-  animation:petal-fall linear infinite;
+body {
+  font-family: "Inter", sans-serif;
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  background: var(--bg);
+  color: var(--ink);
 }
-@keyframes petal-fall{to{transform:translateY(110vh) translateX(40px) rotate(360deg);opacity:.2}}
 
-/* ===== NAV ===== */
-.nav{
-  position:sticky; top:0; z-index:5;
-  display:flex; justify-content:space-between; align-items:center;
-  padding:18px 6%;
-  background:linear-gradient(180deg,rgba(0,0,0,.6),rgba(0,0,0,0));
-  backdrop-filter:blur(4px);
+/* SCENES */
+.scene {
+  height: 100vh;
+  scroll-snap-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 10vh 6%;
 }
-.brand{font-family:"Playfair Display",serif;font-weight:800;font-size:26px}
-.nav a{color:#e6eaf4;text-decoration:none;margin-left:20px;font-weight:700;opacity:.78}
-.nav a:hover{opacity:1}
 
-/* ===== SECTIONS ===== */
-.section{
-  min-height:100vh; display:flex; align-items:center; justify-content:center; text-align:center;
-  padding:90px 6% 70px;
+/* HERO BG */
+.hero {
+  background: url("assets/cherryblossom1.jpg") center/cover no-repeat;
+  position: relative;
 }
-.section .inner, .container{width:min(1080px,92vw); margin:0 auto}
 
-/* hero */
-.hero .inner{max-width:720px}
-.brand-title{
-  font-family:"Playfair Display",serif; font-weight:800;
-  font-size:clamp(36px,6vw,68px); letter-spacing:2px; color:#ffd6e4;
-  text-shadow:0 0 18px rgba(255,197,217,.18); margin-bottom:6px
+/* overlay tint */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.45);
 }
-.toggle-wrap{
-  display:inline-flex; padding:6px 18px; border-radius:12px;
-  background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.16);
-  backdrop-filter:blur(10px); margin-top:6px
+
+/* HERO text */
+.brand-title {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(32px, 6vw, 72px);
+  z-index: 2;
 }
-.toggle-role{font-weight:800;background:var(--glow);-webkit-background-clip:text;color:transparent}
-.coming-soon{font-size:.85rem;opacity:.65;margin-top:4px}
-.tagline{margin-top:14px;opacity:.9;max-width:620px;margin-inline:auto}
-.cta-row{margin-top:22px;display:flex;gap:12px;justify-content:center}
-.btn{padding:12px 18px;border-radius:12px;font-weight:800;border:1px solid transparent;cursor:pointer;text-decoration:none;color:#111}
-.btn.primary{background:var(--glow);color:#111}
-.btn.ghost{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:#fff}
+
+.tagline {
+  font-size: 1.2rem;
+  margin-top: 14px;
+  max-width: 540px;
+  opacity: .85;
+  z-index: 2;
+}
+
+/* toggle pill */
+.toggle-wrap {
+  margin-top: 12px;
+  padding: 6px 18px;
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.18);
+  backdrop-filter: blur(10px);
+  border-radius: 14px;
+  z-index: 2;
+}
+
+.toggle-role {
+  background: var(--glow);
+  -webkit-background-clip: text;
+  color: transparent;
+  font-weight: 700;
+}
+
+.coming-soon {
+  margin-top: 6px;
+  font-size: .9rem;
+  opacity: .75;
+}
+
+/* BUTTONS */
+.btn {
+  padding: 12px 18px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 700;
+  margin: 8px;
+}
+
+.btn-primary { background: var(--glow); color: #111; }
+.btn-ghost { border: 1px solid rgba(255,255,255,.3); }
 
 /* ABOUT */
-.about-grid{
-  display:grid; grid-template-columns:1.1fr 1fr; gap:28px; align-items:center
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  width: 80%;
 }
-.about-img{
-  height:360px; border-radius:16px;
-  background:url("assets/about.jpgt.avif") center/cover no-repeat;
-  border:1px solid rgba(255,255,255,.14)
-}
-.about-text{text-align:center}
-.about-text h2{font-family:"Playfair Display",serif;font-size:clamp(28px,4vw,40px);margin-bottom:10px}
-.about-text ul{list-style:none;margin-top:14px}
-.about-text li{margin:6px 0;opacity:.85}
 
-/* CARDS (services + projects) */
-.center{text-align:center}
-.sub{opacity:.85;margin-top:6px}
-.cards{
-  margin-top:20px; display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:22px
+.about-img {
+  height: 380px;
+  background: url("assets/about.jpgt.avif") center/cover no-repeat;
+  border-radius: 18px;
 }
-.card{
-  position:relative; background:rgba(255,255,255,.05);
-  border:1px solid rgba(255,255,255,.16); border-radius:16px;
-  padding:22px; backdrop-filter:blur(8px); transition:.25s; text-align:left; color:#fff; text-decoration:none
+
+/* CARDS */
+.cards {
+  display: flex;
+  gap: 22px;
+  margin-top: 30px;
 }
-.card:hover{transform:translateY(-6px); border-color:rgba(255,255,255,.3)}
-.card::before{
-  content:""; position:absolute; inset:0; border-radius:16px; padding:1.6px; background:var(--glow);
-  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite:xor; mask-composite:exclude; opacity:.7; pointer-events:none
+
+.card {
+  width: 260px;
+  padding: 20px;
+  border-radius: 18px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.15);
+  backdrop-filter: blur(10px);
 }
-.price-badge{
-  position:absolute; top:12px; right:12px; background:var(--glow); color:#111;
-  padding:6px 10px; border-radius:999px; font-weight:800; font-size:.9rem
-}
-.card img{width:100%;height:160px;object-fit:cover;border-radius:12px;margin-bottom:8px}
-.card h3{margin:6px 0}
 
 /* FOOTER */
-.footer{
-  display:flex; justify-content:space-between; align-items:center; gap:18px;
-  padding:26px 6%; border-top:1px solid rgba(255,255,255,.18);
-  background:rgba(0,0,0,.2); backdrop-filter:blur(8px)
-}
-.footer-left h3{font-family:"Playfair Display",serif;background:var(--glow);-webkit-background-clip:text;color:transparent}
-.footer-contact{margin-top:6px;display:flex;flex-direction:column;gap:2px;opacity:.85}
-.footer-right{display:flex;gap:12px}
-.footer-icon{
-  width:36px;height:36px;border-radius:999px;border:1px solid rgba(255,255,255,.25);
-  display:flex;align-items:center;justify-content:center;color:#fff;font-size:.8rem;transition:.25s;text-decoration:none
-}
-.footer-icon:hover{border-color:var(--pink);color:var(--pink)}
-
-/* REVEAL ON SCROLL */
-.reveal{opacity:0; transform:translateY(28px) scale(.98); transition:opacity .8s ease,transform .8s ease}
-.reveal.visible{opacity:1; transform:translateY(0) scale(1)}
-
-/* RESPONSIVE */
-@media(max-width:900px){
-  .about-grid{grid-template-columns:1fr}
+footer {
+  padding: 80px 0 40px;
+  text-align: center;
+  opacity: .7;
 }
