@@ -1,8 +1,10 @@
-// Role toggle
+// Developer / Designer toggle
 const role = document.getElementById("toggle-role");
 const roles = ["Developer", "Designer"];
-let i = 0;
+let r = 0;
 setInterval(() => {
-  i = (i + 1) % roles.length;
-  role.textContent = roles[i];
+  r = (r + 1) % roles.length;
+  role.textContent = roles[r];
 }, 2600);
+
+// Smooth scroll behavior works automatically via CSS
